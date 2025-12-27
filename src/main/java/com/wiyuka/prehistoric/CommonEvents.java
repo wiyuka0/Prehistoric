@@ -14,8 +14,8 @@ public class CommonEvents {
 
     static int tickCount = 0;
     @SubscribeEvent
-    public static void serverTick(ServerTickEvent.Post event)  {
-        if (++tickCount % 5== 0) {
+    public static void serverTick(ServerTickEvent.Post event) {
+        if (++tickCount % 5 == 0) {
             boolean flag = supplyAsync(() -> event.getServer().saveEverything(false, true, true)); // Do not supress log. LOG FLOOD!
         }
     }
