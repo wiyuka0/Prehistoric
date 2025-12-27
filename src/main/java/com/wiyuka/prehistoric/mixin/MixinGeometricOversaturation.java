@@ -1,15 +1,9 @@
 package com.wiyuka.prehistoric.mixin;
 
-import com.wiyuka.prehistoric.Util;
 import net.minecraft.client.renderer.culling.Frustum;
-import net.minecraft.world.phys.AABB;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.security.NoSuchAlgorithmException;
 import java.util.Random;
 
 @Mixin(Frustum.class)

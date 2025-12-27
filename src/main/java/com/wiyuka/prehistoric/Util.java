@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 public class Util {
 
-    private static Random random = new Random();
+    private static final Random random = new Random();
 
     public static void info(String msg) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         Class<?> loggerUtil = Class.forName("com.mojang.logging.LogUtils");
@@ -27,7 +27,7 @@ public class Util {
         for (String message : messages) {
             Method infoMethod = loggerClass.getMethod("info", String.class);
             infoMethod.invoke(logger, message);
-            if(random.nextDouble(0.0, 1.0) > 0.95)
+            if (random.nextDouble(0.0, 1.0) > 0.95)
                 System.gc();
         }
         Method infoMethod = loggerClass.getMethod("info", String.class);

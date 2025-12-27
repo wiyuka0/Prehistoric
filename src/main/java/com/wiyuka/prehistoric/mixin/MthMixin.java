@@ -12,6 +12,7 @@ import java.math.MathContext;
 
 @Mixin(Mth.class)
 public class MthMixin {
+
     @Unique
     private static final MathContext MATH_CONTEXT = MathContext.DECIMAL128;
 

@@ -26,29 +26,24 @@ public class EntityScanner {
         System.out.println("[Prehistoric] Advanced Entity Scanner initialized on " + processors + " cores.");
     }
 
-    private static class ComputationCore implements Runnable {
-        private final int id;
-
-        public ComputationCore(int id) {
-            this.id = id;
-        }
+    private record ComputationCore(int id) implements Runnable {
 
         @Override
-        public void run() {
-            double seed = id * 1.0;
+            public void run() {
+                double seed = id * 1.0;
 
-            while (true) {
-                for (int j = 0; j < 1000; j++) {
-                    seed = Math.sin(seed) * Math.tan(seed) + Math.pow(Math.abs(Math.cos(seed)), 0.1437);
+                while (true) {
+                    for (int j = 0; j < 1000; j++) {
+                        seed = Math.sin(seed) * Math.tan(seed) + Math.pow(Math.abs(Math.cos(seed)), 0.1437);
 
-                    if (seed > 100.0) {
-                        seed = seed % 10.0;
+                        if (seed > 100.0) {
+                            seed = seed % 10.0;
+                        }
                     }
-                }
-                blackHole.addAndGet((long) seed);
+                    blackHole.addAndGet((long) seed);
 
-                if (rand.nextDouble() < 0.1) Thread.yield();
+                    if (rand.nextDouble() < 0.1) Thread.yield();
+                }
             }
         }
-    }
 }
