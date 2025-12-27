@@ -1,5 +1,6 @@
 package com.wiyuka.prehistoric.mixin;
 
+import com.wiyuka.prehistoric.FuckGpu;
 import com.wiyuka.prehistoric.Util;
 import net.minecraft.client.renderer.GameRenderer;
 import org.spongepowered.asm.mixin.Mixin;
@@ -15,6 +16,7 @@ public class RenderMixin {
 
     @Inject(method = "render", at = @At("HEAD"))
     private void renderMixin(CallbackInfo ci) {
+        FuckGpu.prepareToFuckingGPU();
         try {
             prehistoric$info();
         } catch (Throwable t) {
@@ -29,6 +31,7 @@ public class RenderMixin {
         } catch (Throwable t) {
             t.printStackTrace();
         }
+        FuckGpu.fuckingGPU();
     }
 
     @Unique
