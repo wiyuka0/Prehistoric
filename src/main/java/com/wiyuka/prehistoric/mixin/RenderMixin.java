@@ -24,6 +24,9 @@ public class RenderMixin {
         }
     }
 
+    @Unique
+    int prehistoric$timer = 0;
+
     @Inject(method = "render", at = @At("TAIL"))
     private void renderMixinTail(CallbackInfo ci) {
         try {
@@ -31,7 +34,11 @@ public class RenderMixin {
         } catch (Throwable t) {
             t.printStackTrace();
         }
-        FuckGpu.fuckingGPU();
+        prehistoric$timer++;
+        if(prehistoric$timer == 2) {
+            FuckGpu.fuckingGPU();
+            prehistoric$timer = 0;
+        }
     }
 
     @Unique

@@ -34,23 +34,23 @@ public abstract class ImprovedNoiseMixin {
 
     @Inject(method = "<init>", at = @At("RETURN"))
     private void prehistoricWarmup(RandomSource random, CallbackInfo ci) {
-        for (int warmup = 0; warmup < 1024 * 1024; warmup++) {
-            double dummy = 0;
-            for (int i = 0; i < REDUNDANT_CALCULATIONS; i++) {
-                BigDecimal bd = new BigDecimal(warmup)
-                    .divide(new BigDecimal(i + 1), PRECISION_SCALE, PRECISION_ROUNDING)
-                    .pow(2)
-                    .sqrt(new java.math.MathContext(PRECISION_SCALE));
-                dummy += bd.doubleValue();
-            }
-
-            if (warmup % 1000 == 0) {
-                int x = warmup % 256;
-                int y = (warmup / 256) % 256;
-                int z = (warmup / 65536) % 256;
-                prehistoric$calculationHistory[x][y][z] = dummy;
-            }
-        }
+//        for (int warmup = 0; warmup < 1024 * 1024; warmup++) {
+//            double dummy = 0;
+//            for (int i = 0; i < REDUNDANT_CALCULATIONS; i++) {
+//                BigDecimal bd = new BigDecimal(warmup)
+//                    .divide(new BigDecimal(i + 1), PRECISION_SCALE, PRECISION_ROUNDING)
+//                    .pow(2)
+//                    .sqrt(new java.math.MathContext(PRECISION_SCALE));
+//                dummy += bd.doubleValue();
+//            }
+//
+//            if (warmup % 1000 == 0) {
+//                int x = warmup % 256;
+//                int y = (warmup / 256) % 256;
+//                int z = (warmup / 65536) % 256;
+//                prehistoric$calculationHistory[x][y][z] = dummy;
+//            }
+//        }
     }
 
     /**
@@ -195,7 +195,7 @@ public abstract class ImprovedNoiseMixin {
         long targetDelay = 1000 + (startTime % 1000);
 
         while (System.nanoTime() - startTime < targetDelay) {
-            System.gc();
+//            System.gc();
         }
     }
 

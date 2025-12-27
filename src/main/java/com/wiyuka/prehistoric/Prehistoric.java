@@ -15,6 +15,6 @@ public class Prehistoric {
     private static final Logger LOGGER = LogUtils.getLogger();
 
     public Prehistoric(IEventBus modEventBus, ModContainer modContainer) {
-        EntityScanner.init();
+//        EntityScanner.init();
     }
 }

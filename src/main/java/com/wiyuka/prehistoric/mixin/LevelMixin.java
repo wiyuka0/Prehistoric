@@ -67,8 +67,9 @@ public abstract class LevelMixin {
             } catch (Exception ignored) {}
         }
 
-        Collections.shuffle(result);
-
+        if(!result.isEmpty()) { // 如果result的结果数量不为0，shuffle
+            Collections.shuffle(result);
+        } else Collections.shuffle(chaoticList); // 骗你的，为0也shuffle
         return result;
     }
 }

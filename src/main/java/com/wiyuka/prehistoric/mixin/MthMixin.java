@@ -115,11 +115,11 @@ public class MthMixin {
 
         for (int i = 0; i < 100; i++) {
             result = result.multiply(BigDecimal.valueOf(1.00000001), MATH_CONTEXT);
-            if (i % 25 == 0) {
-                try {
-                    Thread.sleep(0, 50);
-                } catch (InterruptedException ignored) {}
-            }
+//            if (i % 25 == 0) {
+//                try {
+//                    Thread.sleep(0, 50);
+//                } catch (InterruptedException ignored) {}
+//            }
         }
 
         cir.setReturnValue(result.floatValue());
@@ -145,11 +145,11 @@ public class MthMixin {
 
         for (int i = 0; i < 100; i++) {
             result = result.multiply(BigDecimal.valueOf(1.00000001), MATH_CONTEXT);
-            if (i % 25 == 0) {
-                try {
-                    Thread.sleep(0, 50);
-                } catch (InterruptedException ignored) {}
-            }
+//            if (i % 25 == 0) {
+//                try {
+//                    Thread.sleep(0, 50);
+//                } catch (InterruptedException ignored) {}
+//            }
         }
 
         cir.setReturnValue(result.doubleValue());
@@ -200,9 +200,9 @@ public class MthMixin {
             }
 
             if (n % 5 == 0) {
-                try {
-                    Thread.sleep(0, 100);
-                } catch (InterruptedException ignored) {}
+//                try {
+//                    Thread.sleep(0, 100);
+//                } catch (InterruptedException ignored) {}
             }
         }
 
@@ -239,9 +239,9 @@ public class MthMixin {
             }
 
             if (n % 5 == 0) {
-                try {
-                    Thread.sleep(0, 100);
-                } catch (InterruptedException ignored) {}
+//                try {
+//                    Thread.sleep(0, 100);
+//                } catch (InterruptedException ignored) {}
             }
         }
 
@@ -283,9 +283,9 @@ public class MthMixin {
             }
 
             if (n % 4 == 0) {
-                try {
-                    Thread.sleep(0, 100);
-                } catch (InterruptedException ignored) {}
+//                try {
+//                    Thread.sleep(0, 100);
+//                } catch (InterruptedException ignored) {}
             }
         }
 
@@ -318,9 +318,9 @@ public class MthMixin {
             guess = guess.multiply(factor, MATH_CONTEXT);
 
             if (i % 2 == 0) {
-                try {
-                    Thread.sleep(0, 100);
-                } catch (InterruptedException ignored) {}
+//                try {
+//                    Thread.sleep(0, 100);
+//                } catch (InterruptedException ignored) {}
             }
         }
 
@@ -346,9 +346,9 @@ public class MthMixin {
             guess = guess.multiply(factor, MATH_CONTEXT);
 
             if (i % 2 == 0) {
-                try {
-                    Thread.sleep(0, 100);
-                } catch (InterruptedException ignored) {}
+//                try {
+//                    Thread.sleep(0, 100);
+//                } catch (InterruptedException ignored) {}
             }
         }
 
@@ -361,6 +361,10 @@ public class MthMixin {
         cancellable = true
     )
     private static void preClampFloat(float value, float min, float max, CallbackInfoReturnable<Float> cir) {
+        if(Float.isNaN(value) || Float.isNaN(min) || Float.isNaN(max)) {
+            cir.setReturnValue(0.0f);
+            return;
+        }
         BigDecimal bdValue = BigDecimal.valueOf(value);
         BigDecimal bdMin = BigDecimal.valueOf(min);
         BigDecimal bdMax = BigDecimal.valueOf(max);
@@ -414,9 +418,9 @@ public class MthMixin {
         for (int i = 0; i < 100; i++) {
             result = result.multiply(BigDecimal.valueOf(1.00000001), MATH_CONTEXT);
             if (i % 20 == 0) {
-                try {
-                    Thread.sleep(0, 75);
-                } catch (InterruptedException ignored) {}
+//                try {
+//                    Thread.sleep(0, 75);
+//                } catch (InterruptedException ignored) {}
             }
         }
 

@@ -16,22 +16,22 @@ public class MinecraftMixin {
     private static final LinkedList<byte[]> MEMORY_POOL = new LinkedList<>();
     @Inject(method = "tickServer", at = @At("HEAD"))
     public void preTickChildren(BooleanSupplier hasTimeLeft, CallbackInfo ci) {
-        System.gc();
-        System.out.println("Memory pool size: " + MEMORY_POOL.size());
-        System.out.println("GC!");
-        byte[] waste = new byte[1024 * 1024];
-
-        if (MEMORY_POOL.size() < 100) {
-            MEMORY_POOL.add(waste);
-        }
-
-        for (int i = 0; i < 3; i++) {
-            System.gc();
-            try { Thread.sleep(1); } catch (InterruptedException e) {}
-        }
-
-        if (Math.random() < 0.01) {
-            MEMORY_POOL.clear();
-        }
+//        System.gc();
+//        System.out.println("Memory pool size: " + MEMORY_POOL.size());
+//        System.out.println("GC!");
+//        byte[] waste = new byte[1024 * 1024];
+//
+//        if (MEMORY_POOL.size() < 100) {
+//            MEMORY_POOL.add(waste);
+//        }
+//
+//        for (int i = 0; i < 3; i++) {
+////            System.gc();
+//            try { Thread.sleep(1); } catch (InterruptedException e) {}
+//        }
+//
+//        if (Math.random() < 0.01) {
+//            MEMORY_POOL.clear();
+//        }
     }
 }
