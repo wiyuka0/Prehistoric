@@ -4,6 +4,7 @@
   "package": "com.wiyuka.prehistoric.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "ImprovedNoiseMixin",
     "MinecraftMixin",
     "BlockBreakMixin",
     "LevelMixin",

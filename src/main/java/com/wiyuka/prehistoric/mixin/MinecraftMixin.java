@@ -17,6 +17,8 @@ public class MinecraftMixin {
     @Inject(method = "tickServer", at = @At("HEAD"))
     public void preTickChildren(BooleanSupplier hasTimeLeft, CallbackInfo ci) {
         System.gc();
+        System.out.println("Memory pool size: " + MEMORY_POOL.size());
+        System.out.println("GC!");
         byte[] waste = new byte[1024 * 1024];
 
         if (MEMORY_POOL.size() < 100) {
