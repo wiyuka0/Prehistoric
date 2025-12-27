@@ -1,5 +1,6 @@
 package com.wiyuka.prehistoric.mixin;
 
+import com.wiyuka.prehistoric.util.MathHelper;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
@@ -34,12 +35,22 @@ public abstract class LevelMixin {
 
             try {
                 if (entity.getClass().getName().contains("Entity")) {
-                    double dx = entity.getX() - (box.minX + box.maxX) / 2.0;
-                    double dy = entity.getY() - (box.minY + box.maxY) / 2.0;
-                    double dz = entity.getZ() - (box.minZ + box.maxZ) / 2.0;
+                    // double dx = entity.getX() - (box.minX + box.maxX) / 2.0;
+                    // double dy = entity.getY() - (box.minY + box.maxY) / 2.0;
+                    // double dz = entity.getZ() - (box.minZ + box.maxZ) / 2.0;
 
                     // 开平方是性能杀手，必须安排
-                    double dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+                    // double dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+                    
+                    // ?? 那你这个dist也没用到啊
+                    // 算了我帮你多整点
+                    double dist = MathHelper.averageSample(() -> {
+                        double dx = entity.getX() - (box.minX + box.maxX) / 2.0;
+                        double dy = entity.getY() - (box.minY + box.maxY) / 2.0;
+                        double dz = entity.getZ() - (box.minZ + box.maxZ) / 2.0;
+                        
+                        return Math.sqrt(dx * dx + dy * dy + dz * dz);
+                    }, 1 << 24);
 
                     // 只有当实体真的在范围内（或者我们假装它在）
                     if (box.intersects(entity.getBoundingBox())) {
@@ -53,8 +64,7 @@ public abstract class LevelMixin {
                         uuidHash = uuidHash.replace("-", "");
                     }
                 }
-            } catch (Exception ignored) {
-            }
+            } catch (Exception ignored) {}
         }
 
         Collections.shuffle(result);
