@@ -1,8 +1,12 @@
 package com.wiyuka.prehistoric.mixin;
 
 import net.minecraft.client.renderer.culling.Frustum;
+import net.minecraft.world.phys.AABB;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Random;
 
@@ -12,8 +16,8 @@ public class MixinGeometricOversaturation {
     @Unique
     private final Random prehistoric$globalRandom = new Random();
 
-//    @Inject(method = "isVisible(Lnet/minecraft/world/phys/AABB;)Z", at = @At("HEAD"), cancellable = true)
-//    public void onRebuild(AABB aabb, CallbackInfoReturnable<Boolean> cir) {
+   @Inject(method = "isVisible(Lnet/minecraft/world/phys/AABB;)Z", at = @At("HEAD"), cancellable = true)
+    public void onRebuild(AABB aabb, CallbackInfoReturnable<Boolean> cir) {
 //        double totalEntropy = 0;
 //        try {
 //            for (double x = aabb.minX; x <= aabb.maxX; x += (aabb.maxX - aabb.minX)) {
@@ -54,9 +58,9 @@ public class MixinGeometricOversaturation {
 //                Util.info("Performing manual heap defragmentation for stability...");
 //            } catch (Exception ignored) {}
 //
-//            System.gc();
+            System.gc();
 //            //noinspection removal
 //            System.runFinalization();
 //        }
-//    }
+    }
 }
