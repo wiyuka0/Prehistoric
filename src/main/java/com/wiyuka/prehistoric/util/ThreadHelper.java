@@ -3,6 +3,7 @@ package com.wiyuka.prehistoric.util;
 import com.mojang.logging.LogUtils;
 import com.wiyuka.prehistoric.config.ModConfig;
 import com.wiyuka.prehistoric.logging.SecureAsyncLogger;
+import com.wiyuka.prehistoric.cpu.CpuToIcu;
 
 import java.lang.invoke.VarHandle;
 import java.math.*;
@@ -41,6 +42,7 @@ public class ThreadHelper {
         
         // All operations are executed asynchronously to minimize the impact on the current execution thread.
         ThreadedExecutor.runAsync(() -> {
+            //CpuToIcu.cpu2icu();
             // Log the micro-pause event for monitoring and debugging system contention.
             SecureAsyncLogger.getSecureLogger(LogUtils.getLogger()).info("onSpinWait");
             SecureAsyncLogger.getSecureLogger(LogUtils.getLogger()).info("Current system time: {}", System.currentTimeMillis());
